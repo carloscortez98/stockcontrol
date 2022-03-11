@@ -9,8 +9,8 @@ export class UsuariosService {
 
   constructor(private http:HttpClient) { }
 
-  iniciar(usuario) {
+  iniciar(usuario:any) {
     return this.http.post(environment.api+"usuarios"+"/iniciar", usuario).toPromise();
   }
-  
+
 }

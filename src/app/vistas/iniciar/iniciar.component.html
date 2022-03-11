@@ -1,1 +1,26 @@
-<p>iniciar works!</p>
+<div class="contenedor">
+  <div class="div-iniciar">
+    <div class="seccion-iniciar">
+      <h1>Inicia Sesion</h1>
+    </div>
+    <div class="seccion-iniciar">
+      <form [formGroup]="formulario" (ngSubmit)="iniciar()"  class="">
+        <div class="campo-iniciar">
+          <label for="">Usuario:</label>
+          <input type="text" name="" value="" formControlName="usuario">
+          <div *ngIf="formulario.get('usuario')?.hasError('required') && formulario.get('usuario')?.touched" class="">
+            <span class="form-error">Campo requerido</span>
+          </div>
+        </div>
+        <div class="campo-iniciar">
+          <label for="">Contraseña:</label>
+          <input type="password" name="" value="" formControlName="contraseña">
+          <div *ngIf="formulario.get('contraseña')?.hasError('required') && formulario.get('contraseña')?.touched" class="">
+            <span class="form-error">Campo requerido</span>
+          </div>
+        </div>
+      <button id="boton-iniciar" mat-raised-button color="primary" type="submit" name="iniciar" [disabled]="formulario.invalid">Iniciar</button>
+      </form>
+    </div>
+  </div>
+</div>
