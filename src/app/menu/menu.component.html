@@ -1,0 +1,11 @@
+<nav>
+  <ul>
+    <li><a routerLink="/lista">Lista</a></li>
+    <li><a routerLink="/crear">Crear</a></li>
+    <li><a routerLink="/categorias">Categorias</a></li>
+    <li><a routerLink="/control">Control</a></li>
+    <li *ngIf="datosSrv.logeado"><a routerLink="/lista" (click)="cerrarsesion()">Cerrar Sesion</a></li>
+    <li *ngIf="!datosSrv.logeado" id="bloque"> </li>
+    <li id="autor">Creado por Carlos Cortez</li>
+  </ul>
+</nav>

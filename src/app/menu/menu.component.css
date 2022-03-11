@@ -1,0 +1,37 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+li {
+  flex-grow: 1;
+}
+
+#autor {
+  padding-top: 10%;
+  padding-bottom: 10%;
+}
+
+#bloque {
+  padding-top: 44%;
+  padding-bottom: 43%;
+}
+
+a {
+  display: block;
+  padding-top: 35%;
+  padding-bottom: 35%;
+  /* padding-top: 3.5em;
+  padding-bottom: 3.5em; */
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
+
+a:hover {
+  background-color: green;
+}
