@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProductosService } from 'src/app/servicios/productos.service';
 
 @Component({
   selector: 'app-control',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ControlComponent implements OnInit {
 
-  constructor() { }
+  productos:any = [];
+  displayedColumns:string[] = ['nombre', 'fechaCreac', 'fechaAct', 'actions'];
 
-  ngOnInit(): void {
+  constructor(private router:Router, private pSrv:ProductosService) { }
+
+  async ngOnInit() {
+    if (!localStorage.getItem("token")) {
+      this.router.navigateByUrl("/")
+    } else {
+      try {
+        this.productos = await this.pSrv.traerProductos().toPromise();
+      } catch (error) {
+        // alert("Problema con la base de datos.")
+      }
+    }
   }
-
 }

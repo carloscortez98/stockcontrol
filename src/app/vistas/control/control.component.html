@@ -1,1 +1,31 @@
-<p>control works!</p>
+<div *ngIf="productos.length>0" class="div-tabla-lista">
+  <table mat-table [dataSource]="productos">
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let producto"> {{producto.nombre}} </td>
+    </ng-container>
+    <ng-container matColumnDef="fechaCreac">
+      <th mat-header-cell *matHeaderCellDef> Creacion </th>
+      <td mat-cell *matCellDef="let producto"> {{producto.fechaCreac}} </td>
+    </ng-container>
+    <ng-container matColumnDef="fechaAct">
+      <th mat-header-cell *matHeaderCellDef> Ult. Actualización </th>
+      <td mat-cell *matCellDef="let producto">
+        <ng-container *ngIf="!producto.fechaAct">Sin actualizaciones</ng-container>
+        <ng-container *ngIf="producto.fechaAct">{{producto.fechaAct}}</ng-container>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell  *matHeaderCellDef > Acciones </th>
+      <td mat-cell *matCellDef="let producto">
+        <button [disabled]="!producto.fechaAct" mat-raised-button color="primary" type="button" name="button" routerLink="/control/{{ producto.id }}">Ver historial</button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<div *ngIf="productos.length==0" class="div-error">
+  <p>Problema con la base de datos.</p>
+</div>

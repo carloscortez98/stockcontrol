@@ -1,0 +1,12 @@
+.div-historial {
+  width: 86%;
+  margin: 5%;
+  padding: 2%;
+  background-color: white;
+}
+
+.documentos {
+  padding: 2%;
+  margin-bottom: 2%;
+  border: 1px solid lightblue;
+}

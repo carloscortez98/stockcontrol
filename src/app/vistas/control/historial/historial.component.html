@@ -1,1 +1,12 @@
-<p>historial works!</p>
+<div class="div-historial">
+  <h1>{{ productos.nombre }}</h1>
+  <h2>{{ productos.categoria.nombre }}</h2>
+  <div class="documentos" *ngFor="let documento of productos.historial">
+    <h3>Actualización</h3>
+    <p>Precio: {{ documento.precio }}</p>
+    <p>Stock: {{ documento.stock }}</p>
+    <p>Categoria: {{ documento.categoria.nombre }}</p>
+    <p *ngIf=documento.fechaAct>Fecha de actualización: {{ documento.fechaAct }}</p>
+    <p *ngIf=!documento.fechaAct>Primer registro</p>
+  </div>
+</div>
