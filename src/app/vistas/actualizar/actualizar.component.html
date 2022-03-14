@@ -1,1 +1,78 @@
-<p>actualizar works!</p>
+<div class="div-mostrar-datos" *ngIf="productos.length!=0">
+  <span><h2>Nombre: {{ productos.nombre }}</h2></span>
+  <span><h2>Precio: {{ productos.precio | currency }}</h2></span>
+  <span><h2>Stock: {{ productos.stock }} unidad(es)</h2></span>
+  <span *ngIf="productos.categoria"><h2>Categoria: {{ productos.categoria.nombre }}</h2></span>
+  <span *ngIf="!productos.categoria"><h2>Categoria: Sin categoria</h2></span>
+</div>
+
+<mat-grid-list cols="2" rowHeight="fit" style="height: 50%" gutterSize="10px" class="" *ngIf="productos.length!=0">
+  <mat-grid-tile>
+    <form [formGroup]="formulario" (ngSubmit)="actualizar()"  class="">
+      <mat-form-field class="campo">
+        <mat-label>Precio:</mat-label>
+        <input matInput autocomplete="off" type="number" name="" value="" formControlName="precio">
+        <mat-error *ngIf="formulario.get('precio')?.hasError('pattern') && formulario.get('precio')?.dirty" class="">
+          El precio debe encontrarse entre 1 y 100000. Sólo valores enteros.
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="campo">
+        <mat-label>Stock:</mat-label>
+        <input matInput autocomplete="off" type="number" name="" value="" formControlName="stock">
+        <mat-error *ngIf="formulario.get('stock')?.hasError('pattern') && formulario.get('stock')?.dirty" class="">
+          El stock debe encontrarse entre 1 y 100000. Sólo valores enteros.
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="campo">
+        <mat-label>Categoria:</mat-label>
+        <select matNativeControl class="" name="" formControlName="categoria" ng-init="productos.categoria.nombre">
+          <option *ngIf="!productos.categoria" value="">Seleccionar</option>
+          <option *ngIf="productos.categoria" value="">Mantener</option>
+          <option *ngFor="let categoria of categorias" [value]="categoria._id">{{ categoria.nombre }}</option>
+        </select>
+      </mat-form-field>
+      <div class="aviso-cat">
+        <span *ngIf="!productos.categoria">*Debe seleccionar una categoria si desea guardar los cambios en éste producto.</span>
+      </div>
+      <div *ngIf="divFechaAct" class="">
+        <label for="">FechaAct:</label>
+        <input type="text" name="" value="" formControlName="fechaAct">
+      </div>
+      <button id="boton-actualizarProd" mat-raised-button color="accent" type="submit" name="actualizar" [disabled]="formulario.invalid">Actualizar</button>
+    </form>
+  </mat-grid-tile>
+  <mat-grid-tile>
+    <div class="tile-calculadora">
+      <div class="div-calc" id="div-but">
+        <button id="abrirCalc" class="div-calc" mat-raised-button type="button" name="button" (click)="abrirCalc()">Calculadora</button>
+      </div>
+      <div *ngIf="!calculadora" class="div-calc">
+        <div class="campos-calc">
+          <span>Primer número</span>
+          <input autocomplete="off" id="operador1" type="text" name="" value="" >
+        </div>
+        <div class="campos-calc">
+          <span>Segundo número</span>
+          <input autocomplete="off" id="operador2" type="text" name="" value="">
+        </div>
+        <div class="campos-calc">
+          <button type="button" name="button" (click)="sumar()">Sumar</button>
+          <button type="button" name="button" (click)="restar()">Restar</button>
+          <button type="button" name="button" (click)="multiplicar()">Multiplicar</button>
+          <button type="button" name="button" (click)="dividir()">Dividir</button>
+        </div>
+        <div class="campos-calc">
+          <span>Resultado</span>
+          <input autocomplete="off" id="resultado" type="text" name="" value="">
+          <button type="button" name="button" (click)="limpiar()">Limpiar</button>
+        </div>
+      </div>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+
+<div *ngIf="productos.length==0" class="">
+  <p>Problema con la base de datos.</p>
+</div>

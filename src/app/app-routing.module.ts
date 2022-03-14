@@ -16,7 +16,8 @@ const routes: Routes = [{path:"", component:IniciarComponent},
                         {path:"categorias", component:CategoriasComponent},
                         {path:"lista", component:ListaComponent},
                         {path:"control", component:ControlComponent},
-                        {path:"control/:id", component:HistorialComponent}];
+                        {path:"control/:id", component:HistorialComponent},
+                        {path:"refresh", component:RefreshComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
