@@ -1,1 +1,47 @@
-<p>categorias works!</p>
+<div class="div-form-categorias">
+  <form [formGroup]="formulario" (ngSubmit)="crearCat()"  class="">
+    <mat-form-field class="">
+      <mat-label>Nombre:</mat-label>
+      <input matInput autocomplete="off" type="text" name="" value="" formControlName="nombre">
+      <mat-error *ngIf="formulario.get('nombre')?.hasError('required') && formulario.get('nombre')?.touched" class="">
+        Campo requerido.
+      </mat-error>
+      <mat-error *ngIf="formulario.get('nombre')?.hasError('minlength') && !formulario.get('nombre')?.hasError('pattern') && formulario.get('nombre')?.dirty">
+        El nombre debe contener más de 2 caracteres.
+      </mat-error>
+      <mat-error *ngIf="formulario.get('nombre')?.hasError('maxlength') && !formulario.get('nombre')?.hasError('pattern') && formulario.get('nombre')?.dirty">
+        El nombre no debe contener más de 20 caracteres.
+      </mat-error>
+      <mat-error *ngIf="formulario.get('nombre')?.hasError('pattern') && formulario.get('nombre')?.dirty" class="">
+        El nombre no puede contener números o signos.
+      </mat-error>
+    </mat-form-field>
+    <button id="boton-crearCat" mat-raised-button color="primary" type="submit" name="crearCat" [disabled]="formulario.invalid">Crear Categoria</button>
+    <div class="link-opcional">
+      <a href="#" routerLink="/crear">Crear producto</a>
+    </div>
+  </form>
+</div>
+
+
+<div *ngIf="categorias.length>0" class="div-tabla-lista">
+  <span class="cat-span">*Los productos que contengan categorias eliminadas permanecerán almacenados.</span>
+  <table mat-table [dataSource]="categorias">
+    <ng-container matColumnDef="nombre">
+      <th mat-header-cell *matHeaderCellDef> Nombre </th>
+      <td mat-cell *matCellDef="let categoria"> {{categoria.nombre}} </td>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell  *matHeaderCellDef > Acciones </th>
+      <td mat-cell *matCellDef="let categoria">
+        <button mat-raised-button color="warn" type="button" name="eliminar" (click)="eliminarCat(categoria._id)">Eliminar</button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
+
+<div *ngIf="categorias.length==0" class="div-error">
+  <p>Problema con la base de datos.</p>
+</div>

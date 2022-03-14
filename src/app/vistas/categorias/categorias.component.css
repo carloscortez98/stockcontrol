@@ -1,0 +1,49 @@
+mat-label {
+  color: black;
+}
+
+table {
+  width: 90%;
+  margin-top: 2%;
+  margin-left: 5%;
+  margin-right: 5%;
+  margin-bottom: 5%;
+  padding: 0;
+  text-align: center;
+}
+
+table th {
+  text-align: center;
+}
+
+.div-tabla-lista {
+  width: 100%;
+}
+
+.div-form-categorias {
+  width: 86%;
+  margin: 5%;
+  padding: 2%;
+  background-color: white;
+}
+
+#boton-crearCat {
+  margin-left: 1%;
+}
+
+.link-opcional {
+  margin-top: 1%;
+}
+
+.cat-span {
+  width: 90%;
+  margin-left: 5%;
+  padding: 0;
+}
+
+.div-error {
+  width: 86%;
+  margin: 5%;
+  padding: 2%;
+  background-color: white;
+}

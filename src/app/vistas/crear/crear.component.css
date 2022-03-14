@@ -1,0 +1,34 @@
+.contenedor {
+  width: 90%;
+  margin: 5%;
+  padding: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.div-form-crear {
+  width: 30%;
+  margin: 4%;
+  padding: 2%;
+  text-align: center;
+  background-color: white;
+}
+
+.campo {
+  margin: 3%;
+}
+
+mat-label {
+  color: black;
+}
+
+.link-opcional {
+  margin: 1%;
+}
+
+#boton-crearProd {
+  margin: 1%;
+}

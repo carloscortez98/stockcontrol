@@ -1,1 +1,63 @@
-<p>crear works!</p>
+<div class="contenedor">
+  <div class="div-form-crear">
+    <form [formGroup]="formulario" (ngSubmit)="crear()"  class="">
+      <mat-form-field class="campo">
+        <mat-label>Nombre:</mat-label>
+        <input matInput autocomplete="off" type="text" name="" value="" formControlName="nombre">
+        <mat-error *ngIf="formulario.get('nombre')?.hasError('required') && formulario.get('nombre')?.touched" class="">
+          Campo requerido
+        </mat-error>
+        <mat-error *ngIf="formulario.get('nombre')?.hasError('minlength') && !formulario.get('nombre')?.hasError('pattern') && formulario.get('nombre')?.dirty">
+          El nombre debe contener más de 2 caracteres.
+        </mat-error>
+        <mat-error *ngIf="formulario.get('nombre')?.hasError('maxlength') && !formulario.get('nombre')?.hasError('pattern') && formulario.get('nombre')?.dirty">
+          El nombre no debe contener más de 20 caracteres.
+        </mat-error>
+        <mat-error *ngIf="formulario.get('nombre')?.hasError('pattern')" class="">
+          El nombre no puede contener números o signos.
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="campo">
+        <mat-label>Precio:</mat-label>
+        <input matInput autocomplete="off" type="number" name="" value="" formControlName="precio">
+        <mat-error *ngIf="formulario.get('precio')?.hasError('required') && formulario.get('precio')?.touched" class="">
+          Campo requerido.
+        </mat-error>
+        <mat-error *ngIf="formulario.get('precio')?.hasError('pattern') && formulario.get('precio')?.dirty" class="">
+          El precio debe encontrarse entre 1 y 100000. Sólo valores enteros.
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="campo">
+        <mat-label>Stock:</mat-label>
+        <input matInput autocomplete="off" type="number" name="" value="" formControlName="stock">
+        <mat-error *ngIf="formulario.get('stock')?.hasError('required') && formulario.get('stock')?.touched" class="">
+          Campo requerido.
+        </mat-error>
+        <mat-error *ngIf="formulario.get('stock')?.hasError('pattern') && formulario.get('stock')?.dirty" class="">
+          El stock debe encontrarse entre 1 y 100000. Sólo valores enteros.
+        </mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="campo">
+        <mat-label>Categoria:</mat-label>
+        <select matNativeControl formControlName="categoria">
+          <option value="">Seleccionar</option>
+          <option *ngFor="let categoria of categorias" [value]="categoria._id">{{categoria.nombre}}</option>
+        </select>
+        <mat-error *ngIf="formulario.get('categoria')?.hasError('required') && formulario.get('categoria')?.touched" class="">
+          Campo requerido.
+        </mat-error>
+      </mat-form-field>
+      <div class="link-opcional">
+        <a href="#" routerLink="/categorias">Crear categoria</a>
+      </div>
+      <div *ngIf="divFechaCreac" class="">
+        <label for="">FechaCreac:</label>
+        <input type="text" name="" value="" formControlName="fechaCreac">
+      </div>
+      <button id="boton-crearProd" mat-raised-button color="primary" type="submit" name="crear" [disabled]="formulario.invalid">Crear</button>
+    </form>
+  </div>
+</div>
